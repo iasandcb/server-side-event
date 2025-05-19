@@ -1,0 +1,32 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.5'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.ktb'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+// https://mvnrepository.com/artifact/io.netty/netty-resolver-dns-native-macos
+// https://mvnrepository.com/artifact/io.netty/netty-resolver-dns-native-macos
+  runtimeOnly group: 'io.netty', name: 'netty-resolver-dns-native-macos', version: '4.2.1.Final', classifier: 'osx-aarch_64'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

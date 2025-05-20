@@ -25,7 +25,6 @@ public class SseController {
     public SseController() {
         // Configure WebClient to connect to the FastAPI service
         this.webClient = WebClient.builder().baseUrl("http://localhost:8000").build(); // FastAPI URL
-        // Immediately start consuming from FastAPI and push to the sink
     }
 
     private void startConsumingFromFastAPI() {
@@ -61,6 +60,7 @@ public class SseController {
     public Flux<ServerSentEvent<String>> processAi() {
         System.out.println("Spring Boot: Client connected to /api/process. Starting SSE stream...");
 
+        // Start consuming from FastAPI and push to the sink
         startConsumingFromFastAPI();
 
         // Return the flux from the sink.
